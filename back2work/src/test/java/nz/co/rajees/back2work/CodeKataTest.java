@@ -56,5 +56,18 @@ public class CodeKataTest {
 		
 		assertEquals(3, testClass.add("//;\n1;2"));
 	}	
+	
+	@Test
+	public void testWhenAddingANegativeNumberAnExceptionIsThrown() {
+		try{
+			testClass.add("-1,2,-3");
+			fail("Should throw exception");
+		} catch(IllegalArgumentException ex){
+			String message = ex.getMessage();
+			assertNotNull(message);
+			assertTrue(message.contains("-1"));
+		}
 		
+	}	
+	
 }

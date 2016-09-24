@@ -1,5 +1,7 @@
 package nz.co.rajees.back2work;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,19 +26,27 @@ public class CodeKata {
 			throw new IllegalArgumentException("Delimiter cannot be last character.");
 		}
 		String numbersToAdd = numbers;
-		String delimiters = ",\n";
+		String defaultDelimiters = ",\n";
 		String definedDelimiter = determineDefinedDelimiter(numbers);
 		if(definedDelimiter != null){
-			delimiters += definedDelimiter;
+			defaultDelimiters += definedDelimiter;
 			String[] delimiterAndNumbersToAdd = numbers.split(DELIMITER_REGEX);
 			numbersToAdd = delimiterAndNumbersToAdd[1];
 		}
-		String[] numbersArray = buildArrayOfNumbers(numbersToAdd, "[" + delimiters +"]");
+		String[] numbersArray = buildArrayOfNumbers(numbersToAdd, "[" + defaultDelimiters +"]");
 
 		int total = 0;
+		List<Integer> negativeNumbers = new ArrayList<Integer>(); 
 		for (int i = 0; i < numbersArray.length; i++) {
-			total += Integer.parseInt(numbersArray[i]);		
+			int intToAdd = Integer.parseInt(numbersArray[i]);
+			if(intToAdd < 0){
+				negativeNumbers.add(intToAdd);
+			}
+			total += intToAdd;		
 		} 
+		if(negativeNumbers.size() > 0){
+			throw new IllegalArgumentException(negativeNumbers.toString());
+		}
 		return total;
 	}
 
