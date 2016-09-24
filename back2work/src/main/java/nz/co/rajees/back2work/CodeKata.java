@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 
 public class CodeKata {
 
+
+
 	private static final String DELIMITER_REGEX = "//\\W\n";
 	private static final Pattern FIND_DELIM_PATTERN = Pattern.compile("//(\\W)\n");
 
@@ -25,15 +27,8 @@ public class CodeKata {
 		if(isDelimiterLastCharacter(numbers)){
 			throw new IllegalArgumentException("Delimiter cannot be last character.");
 		}
-		String numbersToAdd = numbers;
-		String defaultDelimiters = ",\n";
-		String definedDelimiter = determineDefinedDelimiter(numbers);
-		if(definedDelimiter != null){
-			defaultDelimiters += definedDelimiter;
-			String[] delimiterAndNumbersToAdd = numbers.split(DELIMITER_REGEX);
-			numbersToAdd = delimiterAndNumbersToAdd[1];
-		}
-		String[] numbersArray = buildArrayOfNumbers(numbersToAdd, "[" + defaultDelimiters +"]");
+		NumbersToAddSpec spec = buildSpec(numbers);
+		String[] numbersArray = buildArrayOfNumbers(spec.numbersToAdd, "[" + spec.delimiters +"]");
 
 		int total = 0;
 		List<Integer> negativeNumbers = new ArrayList<Integer>(); 
@@ -81,4 +76,30 @@ public class CodeKata {
 		}
 		return false;
 	}
+	
+	
+	private NumbersToAddSpec buildSpec(String numbers){
+		String numbersToAdd = numbers;
+		String delimiters = ",\n";
+		String definedDelimiter = determineDefinedDelimiter(numbers);
+		if(definedDelimiter != null){
+			delimiters += definedDelimiter;
+			//there will be a 2 element array. First element is an empty String, Second element is the numbers to add. 
+			String[] delimiterAndNumbersToAdd = numbers.split(DELIMITER_REGEX);
+			numbersToAdd = delimiterAndNumbersToAdd[1];
+		}
+		return new NumbersToAddSpec(delimiters, numbersToAdd);
+	}
+	
+	private class NumbersToAddSpec {
+		String delimiters;
+		String numbersToAdd;
+		
+		NumbersToAddSpec(String delimiters, String numbersToAdd) {
+			super();
+			this.delimiters = delimiters;
+			this.numbersToAdd = numbersToAdd;
+		}
+		
+	}	
 }
