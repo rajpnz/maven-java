@@ -99,16 +99,16 @@ public class CodeKata {
 	 * @return
 	 */
 	private String escapeMetaCharacters(String definedDelimiter) {
-		String escapedDelimiter = "";
+		StringBuilder stringBuilder = new StringBuilder();
 		char[] charArray = definedDelimiter.toCharArray();
 		for (char c: charArray) {
 			if(c == '*'){
-				escapedDelimiter += "\\" + c;
+				stringBuilder.append("\\" + c);
 			} else{
-				escapedDelimiter += c;
+				stringBuilder.append(c);
 			}
 		}
-		return escapedDelimiter;
+		return stringBuilder.toString();
 	}
 
 	private class NumbersToAddSpec {
