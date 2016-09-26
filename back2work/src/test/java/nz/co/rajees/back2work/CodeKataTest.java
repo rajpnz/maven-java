@@ -58,6 +58,11 @@ public class CodeKataTest {
 	}	
 	
 	@Test
+	public void testHandleOtherDelimitersThatAreMoreThanOneCharacter() {
+		
+		assertEquals(3, testClass.add("//***\n1***2"));
+	}	
+	@Test
 	public void testWhenAddingANegativeNumberAnExceptionIsThrown() {
 		try{
 			testClass.add("-1,2,-3");

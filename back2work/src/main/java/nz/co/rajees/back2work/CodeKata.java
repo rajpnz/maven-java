@@ -9,8 +9,8 @@ public class CodeKata {
 
 
 
-	private static final String DELIMITER_REGEX = "//\\W\n";
-	private static final Pattern FIND_DELIM_PATTERN = Pattern.compile("//(\\W)\n");
+	private static final String DELIMITER_REGEX = "//\\W+\n";
+	private static final Pattern FIND_DELIM_PATTERN = Pattern.compile("//(\\W+)\n");
 
 	/**
 	 * http://osherove.com/tdd-kata-1/
@@ -28,7 +28,7 @@ public class CodeKata {
 			throw new IllegalArgumentException("Delimiter cannot be last character.");
 		}
 		NumbersToAddSpec spec = buildSpec(numbers);
-		String[] numbersArray = buildArrayOfNumbers(spec.numbersToAdd, "[" + spec.delimiters +"]");
+		String[] numbersArray = buildArrayOfNumbers(spec.numbersToAdd, spec.delimiters);
 
 		int total = 0;
 		List<Integer> negativeNumbers = new ArrayList<Integer>(); 
@@ -82,10 +82,10 @@ public class CodeKata {
 	
 	private NumbersToAddSpec buildSpec(String numbers){
 		String numbersToAdd = numbers;
-		String delimiters = ",\n";
+		String delimiters = ",|\n"; //comma OR carriage return
 		String definedDelimiter = determineDefinedDelimiter(numbers);
 		if(definedDelimiter != null){
-			delimiters += definedDelimiter;
+			delimiters += "|" + escapeMetaCharacters(definedDelimiter);
 			//there will be a 2 element array. First element is an empty String, Second element is the numbers to add. 
 			String[] delimiterAndNumbersToAdd = numbers.split(DELIMITER_REGEX);
 			numbersToAdd = delimiterAndNumbersToAdd[1];
@@ -93,6 +93,24 @@ public class CodeKata {
 		return new NumbersToAddSpec(delimiters, numbersToAdd);
 	}
 	
+	/**
+	 * We could have dangling metadata characters, so we need to escape them 
+	 * @param definedDelimiter
+	 * @return
+	 */
+	private String escapeMetaCharacters(String definedDelimiter) {
+		String escapedDelimiter = "";
+		char[] charArray = definedDelimiter.toCharArray();
+		for (char c: charArray) {
+			if(c == '*'){
+				escapedDelimiter += "\\" + c;
+			} else{
+				escapedDelimiter += c;
+			}
+		}
+		return escapedDelimiter;
+	}
+
 	private class NumbersToAddSpec {
 		String delimiters;
 		String numbersToAdd;
