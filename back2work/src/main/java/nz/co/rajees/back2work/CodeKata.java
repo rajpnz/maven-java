@@ -36,6 +36,8 @@ public class CodeKata {
 			int intToAdd = Integer.parseInt(numbersArray[i]);
 			if(intToAdd < 0){
 				negativeNumbers.add(intToAdd);
+			} else if(intToAdd > 1000){
+				continue;
 			}
 			total += intToAdd;		
 		} 

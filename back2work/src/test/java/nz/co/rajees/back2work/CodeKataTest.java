@@ -70,4 +70,10 @@ public class CodeKataTest {
 		
 	}	
 	
+	@Test
+	public void testNumbersOver1000ShouldBeIgnored() {
+		
+		assertEquals(1009, testClass.add("2,1000,7,1005"));
+	}	
+		
 }
