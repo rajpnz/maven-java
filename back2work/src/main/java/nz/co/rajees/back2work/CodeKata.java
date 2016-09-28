@@ -125,14 +125,13 @@ public class CodeKata {
 				char previousChar =  delimiter.charAt(0);
 				StringBuilder oneDelimiterBuilder = new StringBuilder();
 				for(char c: charArray){
-					if(c == previousChar || oneDelimiterBuilder.length() == 1){
-						previousChar = c;
-					} else{
+					if(c != previousChar  && oneDelimiterBuilder.length() != 1){
 						// c is different than previous character so we have had a change in delimiter
 						definedDelimiters.add(oneDelimiterBuilder.toString());
 						oneDelimiterBuilder.setLength(0); //clears StringBuilder
-					}
+					} 
 					oneDelimiterBuilder.append(c);
+					previousChar = c;
 				}
 				if(oneDelimiterBuilder.length() > 0){
 					definedDelimiters.add(oneDelimiterBuilder.toString());
