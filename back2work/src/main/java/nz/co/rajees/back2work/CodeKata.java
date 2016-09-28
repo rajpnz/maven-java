@@ -52,23 +52,7 @@ public class CodeKata {
 		return numbersArray;
 	}
 	
-	private String determineDefinedDelimiter(String numbers) {
-		// TODO Auto-generated method stub
-		String[] result = numbers.split(DELIMITER_REGEX);
-		if(result.length ==2){
-			//String delimiter = numbers.substring(2, 3);
-			Matcher matcher = FIND_DELIM_PATTERN.matcher(numbers);
-			String delimiter = null;
-			if (matcher.find())
-			{
-				delimiter = matcher.group(1);
-			}			
-			return delimiter;
-		} else {
-			return null;
-		}
-		
-	}
+
 
 	boolean isDelimiterLastCharacter(String numbers){
 		//find number of delimiters, count of numbers should be 1 more..
@@ -125,7 +109,7 @@ public class CodeKata {
 				char previousChar =  delimiter.charAt(0);
 				StringBuilder oneDelimiterBuilder = new StringBuilder();
 				for(char c: charArray){
-					if(c != previousChar  && oneDelimiterBuilder.length() != 1){
+					if(c != previousChar ){
 						// c is different than previous character so we have had a change in delimiter
 						definedDelimiters.add(oneDelimiterBuilder.toString());
 						oneDelimiterBuilder.setLength(0); //clears StringBuilder
