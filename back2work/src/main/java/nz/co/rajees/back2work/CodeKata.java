@@ -83,22 +83,57 @@ public class CodeKata {
 	private NumbersToAddSpec buildSpec(String numbers){
 		String numbersToAdd = numbers;
 		String delimiters = ",|\n"; //comma OR carriage return
-		String definedDelimiter = determineDefinedDelimiter(numbers);
-		
-		if(definedDelimiter != null){
-			if(definedDelimiter.length() > 1 && !containsSameCharacters(definedDelimiter)){
+		List<String> definedDelimiters = extractDefinedDelimiters(numbers);
+		for(String oneDelim: definedDelimiters){
+			if(oneDelim.length() > 1 && !containsSameCharacters(oneDelim)){
 				//Allow multiple delimiters like this:  “//[delim1][delim2]\n” for example “//[*][%]\n1*2%3” should return 6
-				char[] charArray = definedDelimiter.toCharArray();
+				char[] charArray = oneDelim.toCharArray();
 				for(char c: charArray){
 					delimiters += "|" + escapeMetaCharacters(Character.toString(c));
 				}
 			}
-			delimiters += "|" + escapeMetaCharacters(definedDelimiter);
+			delimiters += "|" + escapeMetaCharacters(oneDelim);
 			//there will be a 2 element array. First element is an empty String, Second element is the numbers to add. 
 			String[] delimiterAndNumbersToAdd = numbers.split(DELIMITER_REGEX);
-			numbersToAdd = delimiterAndNumbersToAdd[1];
+			numbersToAdd = delimiterAndNumbersToAdd[1];		
 		}
+
 		return new NumbersToAddSpec(delimiters, numbersToAdd);
+	}
+	
+	private List<String> extractDefinedDelimiters(String numbers){
+		List<String> definedDelimiters = new ArrayList<String>();
+		String[] result = numbers.split(DELIMITER_REGEX);
+		if(result.length ==2){
+			//String delimiter = numbers.substring(2, 3);
+			Matcher matcher = FIND_DELIM_PATTERN.matcher(numbers);
+			String delimiter = null;
+			if (matcher.find())
+			{
+				delimiter = matcher.group(1);
+			}	
+			if(delimiter.length() == 1){
+				definedDelimiters.add(delimiter);
+			} else{
+				char[] charArray = delimiter.toCharArray();
+				char previousChar =  delimiter.charAt(0);
+				StringBuilder builder = new StringBuilder();
+				for(char c: charArray){
+					if(c == previousChar || builder.length() == 1){
+						builder.append(c);
+						previousChar = c;
+					} else{
+						definedDelimiters.add(builder.toString());
+						builder.setLength(0); //clears StringBuilder
+						builder.append(c);
+					}
+				}
+				if(builder.length() > 0){
+					definedDelimiters.add(builder.toString());
+				}
+			}
+		} 
+		return definedDelimiters;
 	}
 	
 	/**
