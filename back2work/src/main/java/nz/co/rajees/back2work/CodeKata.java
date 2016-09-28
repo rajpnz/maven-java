@@ -87,8 +87,7 @@ public class CodeKata {
 		
 		if(definedDelimiter != null){
 			if(definedDelimiter.length() > 1 && !containsSameCharacters(definedDelimiter)){
-				//if definedDelimiter has length greater than 1 and DOES NOT contain different delimiters then
-				//loop through the concatenate to delimiters
+				//Allow multiple delimiters like this:  “//[delim1][delim2]\n” for example “//[*][%]\n1*2%3” should return 6
 				char[] charArray = definedDelimiter.toCharArray();
 				for(char c: charArray){
 					delimiters += "|" + escapeMetaCharacters(Character.toString(c));
