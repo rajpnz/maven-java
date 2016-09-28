@@ -101,6 +101,11 @@ public class CodeKata {
 		return new NumbersToAddSpec(delimiters, numbersToAdd);
 	}
 	
+	/**
+	 * Extract a list of delimiters that can be used to delimit the numbers
+	 * @param numbers
+	 * @return
+	 */
 	private List<String> extractDefinedDelimiters(String numbers){
 		List<String> definedDelimiters = new ArrayList<String>();
 		String[] result = numbers.split(DELIMITER_REGEX);
@@ -113,23 +118,24 @@ public class CodeKata {
 				delimiter = matcher.group(1);
 			}	
 			if(delimiter.length() == 1){
+				//1 character delimiter
 				definedDelimiters.add(delimiter);
 			} else{
 				char[] charArray = delimiter.toCharArray();
 				char previousChar =  delimiter.charAt(0);
-				StringBuilder builder = new StringBuilder();
+				StringBuilder oneDelimiterBuilder = new StringBuilder();
 				for(char c: charArray){
-					if(c == previousChar || builder.length() == 1){
-						builder.append(c);
+					if(c == previousChar || oneDelimiterBuilder.length() == 1){
 						previousChar = c;
 					} else{
-						definedDelimiters.add(builder.toString());
-						builder.setLength(0); //clears StringBuilder
-						builder.append(c);
+						// c is different than previous character so we have had a change in delimiter
+						definedDelimiters.add(oneDelimiterBuilder.toString());
+						oneDelimiterBuilder.setLength(0); //clears StringBuilder
 					}
+					oneDelimiterBuilder.append(c);
 				}
-				if(builder.length() > 0){
-					definedDelimiters.add(builder.toString());
+				if(oneDelimiterBuilder.length() > 0){
+					definedDelimiters.add(oneDelimiterBuilder.toString());
 				}
 			}
 		} 
