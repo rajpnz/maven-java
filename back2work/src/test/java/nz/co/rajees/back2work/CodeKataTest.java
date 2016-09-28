@@ -58,6 +58,13 @@ public class CodeKataTest {
 	}	
 	
 	@Test
+	public void testHandleMultipleDelimiters() {
+		
+		assertEquals(3, testClass.add("//;*\n1;2"));
+	}	
+	
+	
+	@Test
 	public void testHandleOtherDelimitersThatAreMoreThanOneCharacter() {
 		
 		assertEquals(3, testClass.add("//***\n1***2"));

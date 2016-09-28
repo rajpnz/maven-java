@@ -71,7 +71,7 @@ public class CodeKata {
 	}
 
 	boolean isDelimiterLastCharacter(String numbers){
-		//find number of delimiters, count of numbers shoud be 1 more..
+		//find number of delimiters, count of numbers should be 1 more..
 		//or last index of delimiter should not be last character.
 		if(numbers.endsWith(",") || numbers.endsWith("\n")){
 			return true;
@@ -84,7 +84,16 @@ public class CodeKata {
 		String numbersToAdd = numbers;
 		String delimiters = ",|\n"; //comma OR carriage return
 		String definedDelimiter = determineDefinedDelimiter(numbers);
+		
 		if(definedDelimiter != null){
+			if(definedDelimiter.length() > 1 && !containsSameCharacters(definedDelimiter)){
+				//if definedDelimiter has length greater than 1 and DOES NOT contain different delimiters then
+				//loop through the concatenate to delimiters
+				char[] charArray = definedDelimiter.toCharArray();
+				for(char c: charArray){
+					delimiters += "|" + escapeMetaCharacters(Character.toString(c));
+				}
+			}
 			delimiters += "|" + escapeMetaCharacters(definedDelimiter);
 			//there will be a 2 element array. First element is an empty String, Second element is the numbers to add. 
 			String[] delimiterAndNumbersToAdd = numbers.split(DELIMITER_REGEX);
@@ -93,6 +102,28 @@ public class CodeKata {
 		return new NumbersToAddSpec(delimiters, numbersToAdd);
 	}
 	
+	/**
+	 * Are all the characters in definedDelimiter the same. 
+	 * @param definedDelimiter
+	 * @return
+	 */
+	private boolean containsSameCharacters(String definedDelimiter) {
+		boolean containsSameChar = true;
+		char[] charArray = definedDelimiter.toCharArray();
+		char previousChar = definedDelimiter.charAt(0);
+		for(char c: charArray){
+			if(c == previousChar){
+				previousChar = c;
+				continue;
+			} else{
+				containsSameChar = false;
+				break;
+			}
+			
+		}
+		return containsSameChar;
+	}
+
 	/**
 	 * We could have dangling metadata characters, so we need to escape them 
 	 * @param definedDelimiter
