@@ -41,4 +41,15 @@ public class Example {
 		return fibonacciRecurse(index -1) + fibonacciRecurse(index -2);
 	}	
 	
+	
+	public static int factorial(int number){
+		if(number == 0 || number == 1){
+			return 1;
+		}
+		int result = 1;
+		for (int i = number; i>0; i--) {
+			result *= i;
+		}
+		return result;
+	}
 }
