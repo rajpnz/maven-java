@@ -42,14 +42,17 @@ public class Example {
 	}	
 	
 	
+	/**
+	 * Calculate the factorial for the number
+	 * Factorial for 4 is 4*3*2*1
+	 * @param number
+	 * @return
+	 */
 	public static int factorial(int number){
 		if(number == 0 || number == 1){
 			return 1;
 		}
-		int result = 1;
-		for (int i = number; i>0; i--) {
-			result *= i;
-		}
+		int result = number * factorial(number -1);
 		return result;
 	}
 }
