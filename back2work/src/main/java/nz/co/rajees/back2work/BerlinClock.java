@@ -4,6 +4,10 @@ import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * https://technologyconversations.com/2014/02/25/java-8-tutorial-through-katas-berlin-clock-easy/
+ *
+ */
 public class BerlinClock {
 	
 	private static final Pattern PARSE_TIME_PATTERN = Pattern.compile("([0-2][0-9])::([0-5][0-9]):([0-5][0-9])");
@@ -34,7 +38,7 @@ public class BerlinClock {
 			String secondsStr = matcher.group(3);
 			seconds = Integer.valueOf(secondsStr); 
 		} else {
-			throw new ParseException("Could not extract time", 0);
+			throw new ParseException("Could not extract time. Should be in format [hh::mm:ss]", 0);
 		}
 	}
 
