@@ -1,0 +1,22 @@
+----------POSTGRES COMMANDS--------------------------------------------------
+psql -U postgres postgres
+--- pass = your favourite password
+
+psql -U surfapp -d surfing -h 127.0.0.1 -W  
+--- pass = Password1
+
+
+----------------------------------------------------------------------------------
+----------Helpful SQL commands--------------------------------------------------
+
+
+insert into surf_break (name) values ('Lyall Bay')
+
+insert into SURF_TYPE (SURF_TYPE, CODE) values ('Beach Break', 'BB');
+insert into surf_break (name, surf_type_id) select 'Indicators', id from surf_type where code ='PB';
+
+
+select sb.name, st.surf_type, st.code from surf_break sb join surf_type st on sb.surf_type_id = st.id
+
+select sb.name, st.surf_type, st.code from surf_break sb join surf_type st on sb.surf_type_id = st.id and sb.code in ('PB')
+
