@@ -54,4 +54,10 @@ public class BerlinClock {
 		return seconds;
 	}
 
+	public boolean isSecondsLampOn(){
+		if(seconds%2 == 0){
+			return true;
+		}
+		return false;
+	}
 }
