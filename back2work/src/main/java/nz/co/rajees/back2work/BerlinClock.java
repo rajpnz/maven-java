@@ -90,4 +90,21 @@ public class BerlinClock {
 		String result = buildLampsOnString(numberOfOneHourLamps);
 		return result;
 	}
+
+	public String getMinutesLampConfigRow_1() {
+		int numberOfMinutesLamps = Math.floorDiv(minutes, 5);
+		String result = "";
+		for (int i = 0; i < 11; i++) {
+			if(numberOfMinutesLamps > i){
+				if(i==2 || i==5 || i==8){
+					result += "R";
+				} else{
+					result += "Y";
+				}
+			} else{
+				result += "O";
+			}
+		}
+		return result;			
+	}
 }
