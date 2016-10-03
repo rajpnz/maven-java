@@ -94,9 +94,10 @@ public class BerlinClock {
 	public String getMinutesLampConfigRow_1() {
 		int numberOfMinutesLamps = Math.floorDiv(minutes, 5);
 		String result = "";
-		for (int i = 0; i < 11; i++) {
-			if(numberOfMinutesLamps > i){
-				if(i==2 || i==5 || i==8){
+		for (int lampPosition = 1; lampPosition <= 11; lampPosition++) {
+			if(numberOfMinutesLamps >= lampPosition){
+				if((lampPosition)%3 == 0){
+					//every 3rd lamp will be red 
 					result += "R";
 				} else{
 					result += "Y";
