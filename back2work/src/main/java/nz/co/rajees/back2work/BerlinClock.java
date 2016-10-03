@@ -108,4 +108,15 @@ public class BerlinClock {
 		}
 		return result;			
 	}
+
+	public String getMinutesLampConfigRow_2() {
+		int numberOfOneMinuteLamps = 0;
+		if(minutes < 5){
+			numberOfOneMinuteLamps= minutes;
+		} else {
+			numberOfOneMinuteLamps = minutes%5;
+		}
+		String result = buildLampsOnString(numberOfOneMinuteLamps);
+		return result;
+	}
 }

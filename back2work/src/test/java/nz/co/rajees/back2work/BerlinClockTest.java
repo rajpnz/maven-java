@@ -68,4 +68,17 @@ public class BerlinClockTest {
 		BerlinClock testClass3 = new BerlinClock("22::57:48");
 		assertEquals("YYRYYRYYRYY", testClass3.getMinutesLampConfigRow_1());	
 	}	
+	
+	@Test
+	public void testGetMinutesLampsConfigRow_2(){
+		
+		BerlinClock testClass = new BerlinClock("18::04:48");
+		assertEquals("RRRR", testClass.getMinutesLampConfigRow_2());
+		
+		BerlinClock testClass2 = new BerlinClock("04::20:48");
+		assertEquals("OOOO", testClass2.getMinutesLampConfigRow_2());	
+		
+		BerlinClock testClass3 = new BerlinClock("22::18:48");
+		assertEquals("RRRO", testClass3.getMinutesLampConfigRow_2());	
+	}		
 }
