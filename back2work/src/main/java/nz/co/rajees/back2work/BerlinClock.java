@@ -60,4 +60,20 @@ public class BerlinClock {
 		}
 		return false;
 	}
+	
+	public String getHoursLampsConfigRow1(){
+		if(hours < 5){
+			return "OOOO";
+		} else if(hours >=5 && hours < 10){
+			return "ROOO";
+		} else if(hours >=10 && hours < 15){
+			return "RROO";
+		}else if(hours >=15 && hours < 20){
+			return "RRRO";
+		} else if(hours >=20){
+			return "RRRR";
+		} else{
+			return "OOOO";
+		}
+	}
 }
