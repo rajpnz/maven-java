@@ -79,8 +79,8 @@ public class BerlinClock {
 		int numberOfOneHourLamps = 0;
 		if(hours < 5){
 			numberOfOneHourLamps= hours;
-		} else if(hours > 20){
-			numberOfOneHourLamps = hours - 20;
+		} else {
+			numberOfOneHourLamps = hours%5;
 		}
 		String result = "";
 		for (int i = 0; i < 4; i++) {
