@@ -74,4 +74,22 @@ public class BerlinClock {
 		return result;
 
 	}
+
+	public String getHoursLampsConfigRow2() {
+		int numberOfOneHourLamps = 0;
+		if(hours < 5){
+			numberOfOneHourLamps= hours;
+		} else if(hours > 20){
+			numberOfOneHourLamps = hours - 20;
+		}
+		String result = "";
+		for (int i = 0; i < 4; i++) {
+			if(numberOfOneHourLamps > i){
+				result += "R";
+			} else{
+				result += "O";
+			}
+		}
+		return result;
+	}
 }
