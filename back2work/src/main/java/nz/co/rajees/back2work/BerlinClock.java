@@ -63,18 +63,23 @@ public class BerlinClock {
 	
 	public String getHoursLampsConfigRow1(){
 		int numberOfRedLamps = Math.floorDiv(hours, 5);
+		String result = buildLampsOnString(numberOfRedLamps);
+		return result;
+
+	}
+
+	private String buildLampsOnString(int numberOfLampsOn){
 		String result = "";
 		for (int i = 0; i < 4; i++) {
-			if(numberOfRedLamps > i){
+			if(numberOfLampsOn > i){
 				result += "R";
 			} else{
 				result += "O";
 			}
 		}
-		return result;
-
+		return result;		
 	}
-
+	
 	public String getHoursLampsConfigRow2() {
 		int numberOfOneHourLamps = 0;
 		if(hours < 5){
@@ -82,14 +87,7 @@ public class BerlinClock {
 		} else {
 			numberOfOneHourLamps = hours%5;
 		}
-		String result = "";
-		for (int i = 0; i < 4; i++) {
-			if(numberOfOneHourLamps > i){
-				result += "R";
-			} else{
-				result += "O";
-			}
-		}
+		String result = buildLampsOnString(numberOfOneHourLamps);
 		return result;
 	}
 }
