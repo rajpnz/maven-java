@@ -81,14 +81,7 @@ public class BerlinClock {
 	}
 	
 	public String getHoursLampsConfigRow2() {
-		int numberOfOneHourLamps = 0;
-		if(hours < 5){
-			numberOfOneHourLamps= hours;
-		} else {
-			numberOfOneHourLamps = hours%5;
-		}
-		String result = buildLampsOnString(numberOfOneHourLamps);
-		return result;
+		return buildCommonRow2Config(hours);
 	}
 
 	public String getMinutesLampConfigRow_1() {
@@ -108,15 +101,18 @@ public class BerlinClock {
 		}
 		return result;			
 	}
-
-	public String getMinutesLampConfigRow_2() {
-		int numberOfOneMinuteLamps = 0;
-		if(minutes < 5){
-			numberOfOneMinuteLamps= minutes;
+	private String buildCommonRow2Config(int minutesOrHours){
+		int numberOfLamps = 0;
+		if(minutesOrHours < 5){
+			numberOfLamps= minutesOrHours;
 		} else {
-			numberOfOneMinuteLamps = minutes%5;
+			numberOfLamps = minutesOrHours%5;
 		}
-		String result = buildLampsOnString(numberOfOneMinuteLamps);
-		return result;
+		String result = buildLampsOnString(numberOfLamps);
+		return result;	
+	}
+	
+	public String getMinutesLampConfigRow_2() {
+		return buildCommonRow2Config(minutes);
 	}
 }
