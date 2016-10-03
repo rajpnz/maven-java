@@ -62,18 +62,16 @@ public class BerlinClock {
 	}
 	
 	public String getHoursLampsConfigRow1(){
-		if(hours < 5){
-			return "OOOO";
-		} else if(hours >=5 && hours < 10){
-			return "ROOO";
-		} else if(hours >=10 && hours < 15){
-			return "RROO";
-		}else if(hours >=15 && hours < 20){
-			return "RRRO";
-		} else if(hours >=20){
-			return "RRRR";
-		} else{
-			return "OOOO";
+		int numberOfRedLamps = Math.floorDiv(hours, 5);
+		String result = "";
+		for (int i = 0; i < 4; i++) {
+			if(numberOfRedLamps > i){
+				result += "R";
+			} else{
+				result += "O";
+			}
 		}
+		return result;
+
 	}
 }
