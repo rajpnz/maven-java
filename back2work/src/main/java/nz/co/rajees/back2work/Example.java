@@ -3,6 +3,7 @@ package nz.co.rajees.back2work;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Example {
 
@@ -61,10 +62,10 @@ public class Example {
 	}
 	
 	public static List<String> toUpperCase(Collection<String> collOfStrings){
-		List<String> upperCaseStrings = new ArrayList<String>();
-		for(String s: collOfStrings){
-			upperCaseStrings.add(s.toUpperCase());
-		}
-		return upperCaseStrings;
+		return collOfStrings.stream()
+				.map(String::toUpperCase)
+				.collect(Collectors.toList());
+		
+
 	}	
 }
