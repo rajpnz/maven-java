@@ -1,5 +1,9 @@
 package nz.co.rajees.back2work;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 public class Example {
 
 	public static void main(String[] args) {
@@ -55,4 +59,12 @@ public class Example {
 		int result = number * factorial(number -1);
 		return result;
 	}
+	
+	public static List<String> toUpperCase(Collection<String> collOfStrings){
+		List<String> upperCaseStrings = new ArrayList<String>();
+		for(String s: collOfStrings){
+			upperCaseStrings.add(s.toUpperCase());
+		}
+		return upperCaseStrings;
+	}	
 }

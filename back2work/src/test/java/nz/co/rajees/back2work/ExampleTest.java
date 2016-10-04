@@ -2,6 +2,10 @@ package nz.co.rajees.back2work;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Test;
 
 public class ExampleTest {
@@ -34,5 +38,12 @@ public class ExampleTest {
 		
 	}
 	
+	@Test
+	public void testToUpperCase(){
+		List<String> testData = Arrays.asList("raj", "pAtel");
+		List<String> actualUpperCase = Example.toUpperCase(testData);
+		assertEquals("RAJ", actualUpperCase.get(0));
+		assertEquals("PATEL", actualUpperCase.get(1));
+	}
 	
 }
