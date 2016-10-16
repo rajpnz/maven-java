@@ -104,10 +104,8 @@ public class Example {
 					result[j] = comparej2;
 					result[j + 1] = comparej1;
 				}
-				
 			}	
 			indexToStop--;
 		}
-		
 	}	
 }
