@@ -1,6 +1,7 @@
 package nz.co.rajees.back2work;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -67,5 +68,21 @@ public class Example {
 				.collect(Collectors.toList());
 		
 
+	}	
+	
+	/**
+	* Sort two given arrays in alphabetical order.
+	* @param arr1 Array 1 - unsorted
+	* @param arr2 Array 2 - unsorted
+	* @return An array contains both arr1 and
+	 *         arr2 contents in alphabetical order.
+	*/  
+	public static String[] sortTwoArrays(
+	                  String[] arr1, String[] arr2) {
+		String[] result = new String[arr1.length + arr2.length];
+		System.arraycopy(arr1, 0, result, 0, arr1.length);
+		System.arraycopy(arr2, 0, result, arr1.length, arr2.length);
+		Arrays.sort(result);
+		return result;
 	}	
 }

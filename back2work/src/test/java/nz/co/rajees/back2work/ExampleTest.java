@@ -45,4 +45,18 @@ public class ExampleTest {
 		assertEquals("PATEL", actualUpperCase.get(1));
 	}
 	
+	@Test
+	public void testSortTwoArrays(){
+		//arrange
+		String[] arrayOne = {"raj", "patel"};
+		String[] arrayTwo = {"is", "cool"};
+		//act
+		String[] sortedArrays = Example.sortTwoArrays(arrayOne, arrayTwo);
+		//assert
+		assertEquals(4, sortedArrays.length);
+		assertEquals("cool", sortedArrays[0]);
+		assertEquals("is", sortedArrays[1]);
+		assertEquals("patel", sortedArrays[2]);
+		assertEquals("raj", sortedArrays[3]);
+	}
 }
