@@ -82,7 +82,32 @@ public class Example {
 		String[] result = new String[arr1.length + arr2.length];
 		System.arraycopy(arr1, 0, result, 0, arr1.length);
 		System.arraycopy(arr2, 0, result, arr1.length, arr2.length);
-		Arrays.sort(result);
+		bubbleSort(result);
+		//Arrays.sort(result);
 		return result;
+	}
+
+
+	/**
+	 * Use bubble sort to sort array alphabetically, without using Arrays.sort
+	 * @param result
+	 */
+	private static void bubbleSort(String[] result) {
+		int indexToStop = result.length -1;
+		for (int i = 0; i < result.length; i++) {
+			for (int j = 0; j < indexToStop; j++) {
+				//5,9,4,7
+				String comparej1 = result[j];
+				String comparej2 = result[j + 1];
+				if(comparej1.compareTo(comparej2) > 0){
+					//need to swap
+					result[j] = comparej2;
+					result[j + 1] = comparej1;
+				}
+				
+			}	
+			indexToStop--;
+		}
+		
 	}	
 }
