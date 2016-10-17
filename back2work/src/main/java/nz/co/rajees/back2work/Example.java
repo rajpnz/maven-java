@@ -1,7 +1,5 @@
 package nz.co.rajees.back2work;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -94,18 +92,18 @@ public class Example {
 	 */
 	private static void bubbleSort(String[] result) {
 		int indexToStop = result.length -1;
-		for (int i = 0; i < result.length; i++) {
+		while(indexToStop > 0){
 			for (int j = 0; j < indexToStop; j++) {
 				//5,9,4,7
-				String comparej1 = result[j];
-				String comparej2 = result[j + 1];
-				if(comparej1.compareTo(comparej2) > 0){
+				String compareJ = result[j];
+				String compareJ2 = result[j + 1];
+				if(compareJ.compareTo(compareJ2) > 0){
 					//need to swap
-					result[j] = comparej2;
-					result[j + 1] = comparej1;
+					result[j] = compareJ2;
+					result[j + 1] = compareJ;
 				}
 			}	
-			indexToStop--;
+			indexToStop--;			
 		}
 	}	
 }
