@@ -16,7 +16,7 @@ public class UsersRestController {
 	@Autowired
 	private UserEventService userEventService;
 	
-	@GetMapping(value="/user/{id}/events")
+	@GetMapping(value="/users/{id}/events")
 	public List<UserEvent> listEventsForUser(@PathVariable("id") String id){
 		List<UserEvent> result = userEventService.getEventsForUser(id);
 		return result;
