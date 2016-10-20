@@ -16,10 +16,12 @@ public class RomanNumeralGenerator {
 		String romanNumeral = "";
 		int balance = number;
 		int numberOfNumerals = 0;
+		//build numeral for 1000's
 		if ((numberOfNumerals = Math.floorDiv(number, 1000)) > 0) {
 			romanNumeral += buildNumeral("M", numberOfNumerals);
 			balance = number % 1000;
 		}
+		//build numeral for 100's
 		if ((numberOfNumerals = Math.floorDiv(balance, 100)) > 0) {
 			if (balance >= 900 && balance <= 999) {
 				romanNumeral += "CM";
@@ -31,16 +33,19 @@ public class RomanNumeralGenerator {
 
 			balance = balance % 100;
 		}
+		//build numeral for 50's
 		if ((numberOfNumerals = Math.floorDiv(balance, 50)) > 0) {
 			// if we got in here then the balance is between 50 and 99
 			romanNumeral += "L";
 			balance = balance % 50;
 		}
+		//build numeral for 40's
 		if ((numberOfNumerals = Math.floorDiv(balance, 40)) > 0) {
 			// if we got in here then the balance is between 40 and 49
 			romanNumeral += "XL";
 			balance = balance % 40;
 		}
+		//build numeral for 10's
 		if ((numberOfNumerals = Math.floorDiv(balance, 10)) > 0) {
 			// if we got in here then the balance is between 0 and 39
 			romanNumeral += buildNumeral("X", numberOfNumerals);
