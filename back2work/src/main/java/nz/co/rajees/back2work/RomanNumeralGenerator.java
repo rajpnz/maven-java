@@ -48,7 +48,7 @@ public class RomanNumeralGenerator {
 	 * Append the roman numeral to the StringBuilder
 	 * @param numberToConvertToRoman The number we are going to convert to roman numeral
 	 * @param unitValue The unit we will calculate the roman numeral for i.e 10's, 100's 
-	 * @param symbolForUnit The roman numeral symbol for the Unit
+	 * @param symbolForUnit The roman numeral symbol for the Unit i.e X,I,V
 	 * @param romanNumeralBuilder. Add the roman numeral to this String Builder
 	 * @return
 	 */
