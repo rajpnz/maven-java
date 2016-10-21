@@ -13,32 +13,33 @@ public class RomanNumeralGenerator {
 	 *      Numeral Kata</a>
 	 */
 	public static String generateRomanNumeral(int number) {
+		//add the roman numerals to the StringBuilder
 		StringBuilder romanNumeral = new StringBuilder();
-		int balance = number;
+		int remainingToConvertToRoman = number;
 		int numberOfNumerals = 0;
 		//build numeral for 1000's
-		balance = appendRomanNumeral(number, 1000, "M", romanNumeral);
+		remainingToConvertToRoman = appendRomanNumeral(number, 1000, "M", romanNumeral);
 		//build numeral for 100's
-		if ((numberOfNumerals = Math.floorDiv(balance, 100)) > 0) {
-			if (balance >= 900 && balance <= 999) {
+		if ((numberOfNumerals = Math.floorDiv(remainingToConvertToRoman, 100)) > 0) {
+			if (remainingToConvertToRoman >= 900 && remainingToConvertToRoman <= 999) {
 				romanNumeral.append("CM");
-			} else if (balance >= 400 && balance <= 499) {
+			} else if (remainingToConvertToRoman >= 400 && remainingToConvertToRoman <= 499) {
 				romanNumeral.append("CD");
 			} else {
 				romanNumeral.append(buildNumeral("C", numberOfNumerals));
 			}
 
-			balance = balance % 100;
+			remainingToConvertToRoman = remainingToConvertToRoman % 100;
 		}
 		//build numeral for 50's
-		balance = appendRomanNumeral(balance, 50, "L", romanNumeral);
+		remainingToConvertToRoman = appendRomanNumeral(remainingToConvertToRoman, 50, "L", romanNumeral);
 		//build numeral for 40's
-		balance = appendRomanNumeral(balance, 40, "XL", romanNumeral);
+		remainingToConvertToRoman = appendRomanNumeral(remainingToConvertToRoman, 40, "XL", romanNumeral);
 		//build numeral for 10's
-		balance = appendRomanNumeral(balance, 10, "X", romanNumeral);
+		remainingToConvertToRoman = appendRomanNumeral(remainingToConvertToRoman, 10, "X", romanNumeral);
 		// when we get here balance should be less than 10
-		if(balance < 10){
-			romanNumeral.append(buildNumeralForNumberUnder10(balance));
+		if(remainingToConvertToRoman < 10){
+			romanNumeral.append(buildNumeralForNumberUnder10(remainingToConvertToRoman));
 		}
 		return romanNumeral.toString();
 	}
