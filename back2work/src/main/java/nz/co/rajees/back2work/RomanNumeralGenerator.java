@@ -17,10 +17,7 @@ public class RomanNumeralGenerator {
 		int balance = number;
 		int numberOfNumerals = 0;
 		//build numeral for 1000's
-		if ((numberOfNumerals = Math.floorDiv(number, 1000)) > 0) {
-			romanNumeral.append(buildNumeral("M", numberOfNumerals));
-			balance = number % 1000;
-		}
+		balance = appendRomanNumeral(number, 1000, "M", romanNumeral);
 		//build numeral for 100's
 		if ((numberOfNumerals = Math.floorDiv(balance, 100)) > 0) {
 			if (balance >= 900 && balance <= 999) {
@@ -34,23 +31,11 @@ public class RomanNumeralGenerator {
 			balance = balance % 100;
 		}
 		//build numeral for 50's
-		if ((numberOfNumerals = Math.floorDiv(balance, 50)) > 0) {
-			// if we got in here then the balance is between 50 and 99
-			romanNumeral.append("L");
-			balance = balance % 50;
-		}
+		balance = appendRomanNumeral(balance, 50, "L", romanNumeral);
 		//build numeral for 40's
-		if ((numberOfNumerals = Math.floorDiv(balance, 40)) > 0) {
-			// if we got in here then the balance is between 40 and 49
-			romanNumeral.append("XL");
-			balance = balance % 40;
-		}
+		balance = appendRomanNumeral(balance, 40, "XL", romanNumeral);
 		//build numeral for 10's
-		if ((numberOfNumerals = Math.floorDiv(balance, 10)) > 0) {
-			// if we got in here then the balance is between 0 and 39
-			romanNumeral.append(buildNumeral("X", numberOfNumerals));
-			balance = balance % 10;
-		}
+		balance = appendRomanNumeral(balance, 10, "X", romanNumeral);
 		// when we get here balance should be less than 10
 		if(balance < 10){
 			romanNumeral.append(buildNumeralForNumberUnder10(balance));
@@ -58,6 +43,26 @@ public class RomanNumeralGenerator {
 		return romanNumeral.toString();
 	}
 
+	/**
+	 * Append the roman numeral to the StringBuilder
+	 * @param numberToConvertToRoman The number we are going to convert to roman numeral
+	 * @param unitValue The unit we will calculate the roman numeral for i.e 10's, 100's 
+	 * @param symbolForUnit The roman numeral symbol for the Unit
+	 * @param romanNumeralBuilder. Add the roman numeral to this String Builder
+	 * @return
+	 */
+	private static int appendRomanNumeral(int numberToConvertToRoman, int unitValue, String symbolForUnit, StringBuilder romanNumeralBuilder){
+		int numberOfNumerals = 0;
+		int balance = 0; 
+		if ((numberOfNumerals = Math.floorDiv(numberToConvertToRoman, unitValue)) > 0) {
+			romanNumeralBuilder.append(buildNumeral(symbolForUnit, numberOfNumerals));
+			balance = numberToConvertToRoman % unitValue;
+		} else{
+			balance = numberToConvertToRoman;
+		}
+		return balance;
+	}
+	
 	private static String buildNumeralForNumberUnder10(int numberUnder10) {
 
 		String romanNumeral = "";
