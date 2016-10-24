@@ -10,13 +10,12 @@ public class BowlingKata {
 	 */
 	public static int calculateBowlingScore(String score){
 		int bowlingScore = 0;
-		int nextScoreIndex = 0;
-		int frameCount = 0; // count of frames that have been played
+		int nextScoreIndex = 0; // index of the next score we will process 
+		int frameCount = 0; // count of frames that have been processed
 		char[] charArrayOfScores = score.toCharArray();
 		while(frameCount < 10 &&  nextScoreIndex < score.length()){
-			char singleScore = charArrayOfScores[nextScoreIndex];
 			int scoreForFrame = 0;
-			if(singleScore == 'X'){
+			if(charArrayOfScores[nextScoreIndex] == 'X'){
 				//STRIKE - score for frame is 10 + next 2 scoring shots
 				scoreForFrame = 10;
 				//now calculate score for next 2 shots
@@ -32,7 +31,7 @@ public class BowlingKata {
 				char firstShotInFrame = charArrayOfScores[nextScoreIndex];
 				char secondShotInFrame = charArrayOfScores[nextScoreIndex+1];
 				if(secondShotInFrame == '/'){
-					//SPARE
+					//SPARE score for frame is 10 + next scoring shot
 					scoreForFrame = (10 + scoreForSymbol(charArrayOfScores[nextScoreIndex+2]));
 				} else {
 					//NORMAL 
