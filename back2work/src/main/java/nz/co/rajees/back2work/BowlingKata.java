@@ -26,7 +26,7 @@ public class BowlingKata {
 				} else{
 					scoreForFrame += scoreForSymbol(nextShotScore) + scoreForSymbol(nextPlusOneShotScore);
 				}
-				nextScoreIndex += 1;
+				nextScoreIndex += 1; //the next score to be processed
 			} else{
 				char firstShotInFrame = charArrayOfScores[nextScoreIndex];
 				char secondShotInFrame = charArrayOfScores[nextScoreIndex+1];
@@ -37,7 +37,7 @@ public class BowlingKata {
 					//NORMAL 
 					scoreForFrame = scoreForSymbol(firstShotInFrame) + scoreForSymbol(secondShotInFrame);
 				}
-				nextScoreIndex += 2; //
+				nextScoreIndex += 2; //the next score to be processed will be 2 ahead 
 			}
 			bowlingScore += scoreForFrame;
 			frameCount++;
