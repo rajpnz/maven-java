@@ -59,4 +59,11 @@ public class ExampleTest {
 		assertEquals("patel", sortedArrays[2]);
 		assertEquals("raj", sortedArrays[3]);
 	}
+	
+	@Test
+	public void testFirstNonRepeatingCharacter(){
+		assertEquals(Character.valueOf('t'), Example.determineFirstNonRepeatingCharacter("stress"));
+		assertEquals(Character.valueOf('r'), Example.determineFirstNonRepeatingCharacter("teeter"));
+		assertEquals(null, Example.determineFirstNonRepeatingCharacter("teet"));
+	}
 }

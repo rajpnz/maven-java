@@ -106,4 +106,37 @@ public class Example {
 			indexToStop--;			
 		}
 	}	
+	
+	/**
+	 * Determine the first non repeating character in a String. 
+	 * 
+	 * 
+	 * @param stringToCheck
+	 * @return The first non-repeating Character in the String or null if all characters repeat
+	 * @see @see <a href="http://javahungry.blogspot.com/2013/12/first-non-repeated-character-in-string-java-program-code-example.html">Non Repeating Character</a>
+	 */
+	public static Character determineFirstNonRepeatingCharacter(String stringToCheck){
+		Character result = null;
+		char[] charArray = stringToCheck.toCharArray();
+		int indexToCheck = 0;
+		outer:
+		while(result == null && indexToCheck < charArray.length){
+			char charToCheck = charArray[indexToCheck];
+			inner:
+			for (int i = 0; i < charArray.length; i++) {
+				if(indexToCheck == i){
+					continue inner; //don't check char against itself 
+				}
+				//now check chars
+				if(charArray[i] == charToCheck){
+					//found duplicate so we can stop this loop and check the next character
+					indexToCheck++;
+					continue outer;
+				}
+			}
+			//got this far so char doesn't repeat
+			result = Character.valueOf(charToCheck);
+		}
+		return result;
+	}
 }
