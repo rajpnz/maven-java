@@ -116,11 +116,11 @@ public class Example {
 	 * @see @see <a href="http://javahungry.blogspot.com/2013/12/first-non-repeated-character-in-string-java-program-code-example.html">Non Repeating Character</a>
 	 */
 	public static Character determineFirstNonRepeatingCharacter(String stringToCheck){
-		Character result = null;
+		Character nonRepeatingChar = null;
 		char[] charArray = stringToCheck.toCharArray();
 		int indexToCheck = 0;
 		outer:
-		while(result == null && indexToCheck < charArray.length){
+		while(nonRepeatingChar == null && indexToCheck < charArray.length){
 			char charToCheck = charArray[indexToCheck];
 			inner:
 			for (int i = 0; i < charArray.length; i++) {
@@ -135,8 +135,8 @@ public class Example {
 				}
 			}
 			//got this far so char doesn't repeat
-			result = Character.valueOf(charToCheck);
+			nonRepeatingChar = Character.valueOf(charToCheck);
 		}
-		return result;
+		return nonRepeatingChar;
 	}
 }
