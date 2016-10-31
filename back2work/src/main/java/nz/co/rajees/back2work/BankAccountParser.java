@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-public class BankAccount {
+public class BankAccountParser {
 
 	/**
 	 * Create the 9 digit account number from a give file 
@@ -84,7 +84,7 @@ public class BankAccount {
 	 * @return
 	 * @throws IOException
 	 */
-	public char[][][] buildArrayOfNumberBlocks(String pathToAccountFile) throws IOException{
+	private char[][][] buildArrayOfNumberBlocks(String pathToAccountFile) throws IOException{
 		Path path = FileSystems.getDefault().getPath(pathToAccountFile);
 		List<String> fileLines = Files.readAllLines(path, Charset.defaultCharset());
 		char[][][] arrayOfNumberBlocks = new char[9][3][3];

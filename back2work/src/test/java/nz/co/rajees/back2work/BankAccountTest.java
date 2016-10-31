@@ -9,11 +9,11 @@ import org.junit.Test;
 
 public class BankAccountTest {
 
-	BankAccount testClass;
+	BankAccountParser testClass;
 	
 	@Before
 	public void setUp(){
-		testClass = new BankAccount();
+		testClass = new BankAccountParser();
 	}
 	
 	@Test
