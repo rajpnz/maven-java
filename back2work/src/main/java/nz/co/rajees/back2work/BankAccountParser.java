@@ -1,10 +1,13 @@
 package nz.co.rajees.back2work;
 
+import static nz.co.rajees.back2work.NumberPattern.*;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.List;
 
 public class BankAccountParser {
@@ -34,46 +37,28 @@ public class BankAccountParser {
 	 * @return
 	 */
 	private Integer convertBlockToNumber(char[][] blockOfChars) {
-		if(blockOfChars[0][1] == '_'){
-			//could be 2,3,5,6,7,8,9
-			if(blockOfChars[1][2] == '|'){
-				//could be 2, 3, 7, 8, 9
-				if(blockOfChars[1][0] == ' '){
-					//could be 2, 3, 7
-					if(blockOfChars[2][1] == ' '){
-						return Integer.valueOf(7); //number 7
-					} else{
-						//could be 2, 3
-						if(blockOfChars[2][0] == '|'){
-							return Integer.valueOf(2); //number 2
-						}else{
-							return Integer.valueOf(3); //number 3
-						}
-					}
-				}else{
-					//could be 8,9
-					if(blockOfChars[2][0] == ' '){
-						return Integer.valueOf(9); //number 9
-					} else{
-						return Integer.valueOf(8); //number 8
-					}
-				}
-			} else{
-				//could be  5, 6
-				if(blockOfChars[2][0] == ' '){
-					return Integer.valueOf(5); //number 5
-				} else{
-					return Integer.valueOf(6); //number 6
-				}
-			}
+		if(Arrays.deepEquals(ONE.getCharacterPattern(), blockOfChars)){
+			return ONE.getValue(); //number 1
+		} else if(Arrays.deepEquals(TWO.getCharacterPattern(), blockOfChars)){
+			return TWO.getValue();
+		} else if(Arrays.deepEquals(THREE.getCharacterPattern(), blockOfChars)){
+			return THREE.getValue();
+		} else if(Arrays.deepEquals(FOUR.getCharacterPattern(), blockOfChars)){
+			return FOUR.getValue();
+		} else if(Arrays.deepEquals(FIVE.getCharacterPattern(), blockOfChars)){
+			return FIVE.getValue();
+		}else if(Arrays.deepEquals(SIX.getCharacterPattern(), blockOfChars)){
+			return SIX.getValue();
+		}else if(Arrays.deepEquals(SEVEN.getCharacterPattern(), blockOfChars)){
+			return SEVEN.getValue();
+		} else if(Arrays.deepEquals(EIGHT.getCharacterPattern(), blockOfChars)){
+			return EIGHT.getValue();
+		}else if(Arrays.deepEquals(NINE.getCharacterPattern(), blockOfChars)){
+			return NINE.getValue();
 		} else {
-			// 1 or 4
-			if(blockOfChars[1][0] == '|'){
-				return Integer.valueOf(4); //number 4
-			} else{
-				return Integer.valueOf(1); //number 1
-			}
+			return Integer.valueOf(-1);
 		}
+
 	}
 
 
