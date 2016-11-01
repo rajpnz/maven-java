@@ -47,7 +47,7 @@ public class BankAccountParser {
 
 	/**
 	 * Build a 9 element array of number blocks. The number block arrays will represent all
-	 * the characters that are used to make up 1 number 
+	 * the characters that are used to make up 1 number. The number block will be a 3x3 array of characters
 	 * @param pathToAccountFile
 	 * @return
 	 * @throws IOException
@@ -61,21 +61,16 @@ public class BankAccountParser {
 			char[] lineAsCharArray = oneLine.toCharArray();
 			int frameNumber = 0;
 			int frameRow = i;
-			int frameColumn = 0;
 			for (int j = 0; j < lineAsCharArray.length; j++) {
 				char c = lineAsCharArray[j];
 				frameNumber = Math.floorDiv(j,3);
+				/*not sure if working out the frameColumn is clearer this way. 
+				Check Git history for previous attempt*/
+				int frameColumn = (j < 3) ? j : j%3;
 				arrayOfNumberBlocks[frameNumber][frameRow][frameColumn] = c;
-				if(frameColumn == 2){
-					frameColumn = 0;
-				} else{
-					frameColumn++;
-				}
-				
 			}
 		}
 		return arrayOfNumberBlocks;
 	}	
-	
 
 }
