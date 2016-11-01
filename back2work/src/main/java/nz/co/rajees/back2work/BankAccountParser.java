@@ -1,7 +1,5 @@
 package nz.co.rajees.back2work;
 
-import static nz.co.rajees.back2work.NumberPattern.*;
-
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.FileSystems;
@@ -37,28 +35,13 @@ public class BankAccountParser {
 	 * @return
 	 */
 	private Integer convertBlockToNumber(char[][] blockOfChars) {
-		if(Arrays.deepEquals(ONE.getCharacterPattern(), blockOfChars)){
-			return ONE.getValue(); //number 1
-		} else if(Arrays.deepEquals(TWO.getCharacterPattern(), blockOfChars)){
-			return TWO.getValue();
-		} else if(Arrays.deepEquals(THREE.getCharacterPattern(), blockOfChars)){
-			return THREE.getValue();
-		} else if(Arrays.deepEquals(FOUR.getCharacterPattern(), blockOfChars)){
-			return FOUR.getValue();
-		} else if(Arrays.deepEquals(FIVE.getCharacterPattern(), blockOfChars)){
-			return FIVE.getValue();
-		}else if(Arrays.deepEquals(SIX.getCharacterPattern(), blockOfChars)){
-			return SIX.getValue();
-		}else if(Arrays.deepEquals(SEVEN.getCharacterPattern(), blockOfChars)){
-			return SEVEN.getValue();
-		} else if(Arrays.deepEquals(EIGHT.getCharacterPattern(), blockOfChars)){
-			return EIGHT.getValue();
-		}else if(Arrays.deepEquals(NINE.getCharacterPattern(), blockOfChars)){
-			return NINE.getValue();
-		} else {
-			return Integer.valueOf(-1);
+		for(NumberPattern pattern : NumberPattern.values()){
+			if(Arrays.deepEquals(pattern.getCharacterPattern(), blockOfChars)){
+				return pattern.getValue();
+			}
 		}
-
+		//couldn't find a matching pattern 
+		return Integer.valueOf(-1);
 	}
 
 
