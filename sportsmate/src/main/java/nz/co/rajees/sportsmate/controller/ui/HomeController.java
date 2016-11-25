@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/home.html")
 public class HomeController {
 
+	private int count = 0; 
+	
     @RequestMapping(method=RequestMethod.GET)
     public ModelAndView printWelcome(ModelMap model){
         model.addAttribute("rajmessage", "You are so cool");
@@ -21,7 +23,11 @@ public class HomeController {
         warriorNames.add("Shaun Johnson");
         warriorNames.add("Konrad Hurrel");
         model.addAttribute("warrnames", warriorNames);
+        if(count%2 ==0){
+        	model.addAttribute("error", "There are " + count + " errors");
+        }
         ModelAndView modelAndView = new ModelAndView("ui/home", model);
+        count++;
         return modelAndView;
     }
 }

@@ -6,6 +6,11 @@
 </head>
 <body>
 <h1>Message : ${rajmessage}</h1>
+<c:if test="${!empty error}">
+	<div style="color: #D8000C;background-color: #FFBABA;">
+		<c:out value="Error: ${error}" />
+	</div>
+</c:if>
 <br>
     <c:if test="${!empty warrnames}">
         <c:forEach items="${warrnames}" var="name" varStatus="loop">
