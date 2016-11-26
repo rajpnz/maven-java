@@ -1,7 +1,5 @@
 package nz.co.rajees.sportsmate.controller.ui;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
