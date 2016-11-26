@@ -25,6 +25,8 @@ public class SearchController {
 		}
 		if(!StringUtils.isEmpty(error)){
 			map.addAttribute("error", error);
+			map.addAttribute("isbncode", isbn);
+			map.addAttribute("bookcategories", bookCat);
 			return "search.jsp";
 		} else{
 			return "redirect:../index.jsp";
