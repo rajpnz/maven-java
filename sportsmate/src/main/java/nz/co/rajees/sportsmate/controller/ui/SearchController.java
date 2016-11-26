@@ -23,11 +23,11 @@ public class SearchController {
 		if(StringUtils.isEmpty(isbn)){
 			error += "ISBN is mandatory ";
 		}
-		map.addAttribute("error", error);
 		if(!StringUtils.isEmpty(error)){
+			map.addAttribute("error", error);
 			return "search.jsp";
 		} else{
-			return "../index.jsp";
+			return "redirect:../index.jsp";
 		}
 		
 	}
