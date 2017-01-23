@@ -25,7 +25,9 @@ public class BankAccountParser {
 			Integer oneAccountNumber = convertBlockToNumber(accountAsCharArray[i]);
 			accountNumber.append(oneAccountNumber.toString());
 		}
+
 		return new Integer(accountNumber.toString());
+
 	}
 	
 	
