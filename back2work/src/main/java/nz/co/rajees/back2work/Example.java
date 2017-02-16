@@ -2,13 +2,15 @@ package nz.co.rajees.back2work;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Example {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Predicate<String> i  = s-> s.equals("Raj");
+		//expect true
+		System.out.println(i.test("Raj"));
 	}
 
 	
