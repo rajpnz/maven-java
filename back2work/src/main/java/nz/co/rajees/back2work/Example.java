@@ -9,7 +9,7 @@ public class Example {
 
 	public static void main(String[] args) {
 		Predicate<String> i  = s-> s.equals("Raj");
-		//expect true
+		//expect TRUE
 		System.out.println(i.test("Raj"));
 	}
 
