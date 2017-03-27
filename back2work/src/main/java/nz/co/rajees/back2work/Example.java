@@ -1,5 +1,7 @@
 package nz.co.rajees.back2work;
 
+import com.google.common.collect.ImmutableMap;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
@@ -11,6 +13,7 @@ public class Example {
 		Predicate<String> i  = s-> s.equals("Raj");
 		//expect TRUE 2
 		System.out.println(i.test("Raj"));
+		invokeImmutableMap();
 	}
 
 	
@@ -47,7 +50,12 @@ public class Example {
 		return fibonacciRecurse(index -1) + fibonacciRecurse(index -2);
 	}	
 	
-	
+	public static void invokeImmutableMap(){
+		ImmutableMap<Integer, String> idAndCustomer = ImmutableMap.of(1, "Cheese", 2, "Sus", 3, "Keeran");
+		String rajName = idAndCustomer.get(1);
+		System.out.println(rajName);
+	}
+
 	/**
 	 * Calculate the factorial for the number
 	 * Factorial for 4 is 4*3*2*1
