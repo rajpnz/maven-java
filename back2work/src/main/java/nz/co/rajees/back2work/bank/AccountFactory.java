@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
  */
 public class AccountFactory {
 
-    private static final Pattern ACCOUNT_ID_PATTERN = Pattern.compile("CRED-[0-9]{2}-[0-9]{3}-[0-9]{6}-[0-9]{3}");
+    private static final Pattern ACCOUNT_ID_PATTERN = Pattern.compile("CRED-\\d{2}-\\d{3}-\\d{6}-\\d{3}");
 
     public AccountId createAccountId(String accountIdentifier){
         Matcher matcher = ACCOUNT_ID_PATTERN.matcher(accountIdentifier);
