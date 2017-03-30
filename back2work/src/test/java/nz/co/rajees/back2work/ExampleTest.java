@@ -1,7 +1,8 @@
 package nz.co.rajees.back2work;
 
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.assertThat;
 import java.util.Arrays;
 import java.util.List;
 
@@ -53,11 +54,9 @@ public class ExampleTest {
 		//act
 		String[] sortedArrays = Example.sortTwoArrays(arrayOne, arrayTwo);
 		//assert
-		assertEquals(4, sortedArrays.length);
-		assertEquals("cool", sortedArrays[0]);
-		assertEquals("is", sortedArrays[1]);
-		assertEquals("patel", sortedArrays[2]);
-		assertEquals("raj", sortedArrays[3]);
+		assertThat(sortedArrays.length, is(equalTo(4)));
+		//tests order
+		assertThat(sortedArrays, is(arrayContaining("cool", "is", "patel", "raj")));
 	}
 	
 	@Test

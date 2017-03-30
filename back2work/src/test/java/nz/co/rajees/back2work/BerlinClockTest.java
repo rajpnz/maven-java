@@ -2,6 +2,10 @@ package nz.co.rajees.back2work;
 
 import static org.junit.Assert.*;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Test;
 
 public class BerlinClockTest {
@@ -10,9 +14,9 @@ public class BerlinClockTest {
 	public void testTimeParsedCorrectly() {
 		
 		BerlinClock testClass = new BerlinClock("15::25:48");
-		assertEquals(15, testClass.getHours());
-		assertEquals(25, testClass.getMinutes());
-		assertEquals(48, testClass.getSeconds());
+		assertThat(testClass.getHours(), is(equalTo(15)));
+		assertThat(testClass.getMinutes(), is(equalTo(25)));
+		assertThat(testClass.getSeconds(), is(equalTo(48)));
 	}
 
 	@Test
@@ -31,13 +35,13 @@ public class BerlinClockTest {
 	public void testGetHoursLampsConfigRow1(){
 		
 		BerlinClock testClass = new BerlinClock("18::25:48");
-		assertEquals("RRRO", testClass.getHoursLampsConfigRow1());
-		
+		assertThat(testClass.getHoursLampsConfigRow1(), is(equalTo("RRRO")));
+
 		BerlinClock testClass2 = new BerlinClock("04::25:48");
-		assertEquals("OOOO", testClass2.getHoursLampsConfigRow1());	
-		
+		assertThat(testClass2.getHoursLampsConfigRow1(), is(equalTo("OOOO")));
+
 		BerlinClock testClass3 = new BerlinClock("22::25:48");
-		assertEquals("RRRR", testClass3.getHoursLampsConfigRow1());		
+		assertThat(testClass3.getHoursLampsConfigRow1(), is(equalTo("RRRR")));
 	}
 	
 	@Test
