@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+
 /**
  * Catches exceptions in all Controllers
  * @see <a href="http://niels.nu/blog/2016/controller-advice-exception-handlers.html">
@@ -20,4 +23,20 @@ public class GlobalExceptionHandler {
 	public String handleSportsMateException(SportsMateException ex){
         return ex.getMessage();
     }
+
+    /**
+     * This picks up validation exception picked up in the controllers
+     */
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public String handleConstraintViolationException(ConstraintViolationException ex){
+    	StringBuilder message = new StringBuilder();
+    	for(ConstraintViolation c : ex.getConstraintViolations()){
+    		message.append(c.getMessage());
+    	}
+        return message.toString();
+    }
+
+
 }
