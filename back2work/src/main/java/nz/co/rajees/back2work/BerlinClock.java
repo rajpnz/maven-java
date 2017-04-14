@@ -18,7 +18,7 @@ public class BerlinClock {
 	private int seconds = -1;
 	
 	public BerlinClock(String rawTime) throws IllegalArgumentException{
-		this.rawTime = rawTime;
+		this.rawTime = rawTime ;
 		try{
 			parseTime();
 		} catch(ParseException ex){
