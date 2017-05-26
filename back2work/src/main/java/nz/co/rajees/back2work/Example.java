@@ -22,7 +22,7 @@ public class Example {
 		if(doRecurse){
 			return fibonacciRecurse(index);
 		}
-		//0,1,1,2,3,5,8,13,21
+		//0,1,1,2,3,5,8,13
 		if( index == 0){
 			return 0;
 		} else if(index ==1){
@@ -47,7 +47,7 @@ public class Example {
 		} else if(index ==1){
 			return 1;
 		}
-		//Merge this 11
+		//Merge this 13
 		return fibonacciRecurse(index -1) + fibonacciRecurse(index -2);
 	}	
 	
