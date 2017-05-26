@@ -47,7 +47,7 @@ public class Example {
 		} else if(index ==1){
 			return 1;
 		}
-		//Merge this 7
+		//Merge this 9
 		return fibonacciRecurse(index -1) + fibonacciRecurse(index -2);
 	}	
 	
