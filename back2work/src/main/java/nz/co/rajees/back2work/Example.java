@@ -41,7 +41,7 @@ public class Example {
 	}
 	
 	public static int fibonacciRecurse(int index){
-		//0,1,1,2,3,5,8,13
+		//0,1,1,2,3,5,8
 		if( index == 0){
 			return 0;
 		} else if(index ==1){
