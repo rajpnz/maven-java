@@ -12,8 +12,9 @@ public class Example {
 	public static void main(String[] args) {
 		Predicate<String> i  = s-> s.equals("Raj");
 		//expect TRUE 2
+		System.out.println("------Running Jar File------");
 		System.out.println(i.test("Raj"));
-		invokeImmutableMap();
+		//invokeImmutableMap();
 	}
 
 	
