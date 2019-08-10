@@ -2,6 +2,7 @@ package nz.co.rajees.back2work.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Utility to help with number crunching
@@ -15,13 +16,13 @@ public class NumberUtil {
      */
     public static List<String> extractEvenNumbers(List<String> listOfNumbers) {
 
-        List<String> result = new ArrayList<String>();
-        for(String numberString: listOfNumbers) {
-            Integer number = Integer.valueOf(numberString);
-            if(number % 2 == 0) {
-                result.add(numberString);
-            }
-        }
+        List<String> result = listOfNumbers
+                .stream()
+                .map(numberString -> Integer.valueOf(numberString))
+                .filter(number -> number % 2 == 0)
+                .map(number -> number.toString())
+                .collect(Collectors.toList());
+
         return result;
     }
 }
