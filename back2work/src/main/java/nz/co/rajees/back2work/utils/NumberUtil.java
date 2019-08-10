@@ -16,6 +16,7 @@ public class NumberUtil {
      */
     public static List<String> extractEvenNumbers(List<String> listOfNumbers) {
 
+        // use map. filter, collect strategy
         List<String> result = listOfNumbers
                 .stream()
                 .map(numberString -> Integer.valueOf(numberString))
@@ -30,10 +31,10 @@ public class NumberUtil {
      * Find the sum of a list of numbers
      */
     public static int findSum(List<String> listOfNumbers) {
-        int sum = 0;
-        for(String numberStr: listOfNumbers) {
-            sum += Integer.valueOf(numberStr);
-        }
-        return sum;
+
+        // use map,  reduce strategy
+        return listOfNumbers.stream()
+                .mapToInt(number -> Integer.valueOf(number))
+                .sum();
     }
 }
