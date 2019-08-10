@@ -25,4 +25,15 @@ public class NumberUtil {
 
         return result;
     }
+
+    /**
+     * Find the sum of a list of numbers
+     */
+    public static int findSum(List<String> listOfNumbers) {
+        int sum = 0;
+        for(String numberStr: listOfNumbers) {
+            sum += Integer.valueOf(numberStr);
+        }
+        return sum;
+    }
 }

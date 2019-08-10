@@ -25,4 +25,15 @@ public class NumberUtilTest {
         assertThat(evenNumbers, containsInAnyOrder("2", "4", "8"));
     }
 
+    @Test
+    public void findSum() throws Exception {
+        // arrange
+        List<String> listOfIntegers = Lists.newArrayList("1", "2", "4", "7", "8");
+
+        // act
+        int sum = NumberUtil.findSum(listOfIntegers);
+
+        // assert
+        assertThat(sum, is(equalTo(22)));
+    }
 }
