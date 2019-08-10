@@ -36,5 +36,7 @@ public class NumberUtil {
         return listOfNumbers.stream()
                 .mapToInt(number -> Integer.valueOf(number))
                 .sum();
+//                .reduce(0, Integer::sum);
+//                .reduce(0, (x,y) -> x+y);
     }
 }
