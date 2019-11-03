@@ -8,6 +8,8 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.util.Arrays.stream;
+
 public class BankAccountParser {
 
 	/**
@@ -20,14 +22,10 @@ public class BankAccountParser {
 	 */
 	public Integer createAccountNumberFromFile(String pathToAccountFile) throws IOException{
 		char[][][] accountAsCharArray = buildArrayOfNumberBlocks(pathToAccountFile);
-		StringBuilder accountNumber = new StringBuilder();
-		for (int i = 0; i < accountAsCharArray.length; i++) {
-			Integer oneAccountNumber = convertBlockToNumber(accountAsCharArray[i]);
-			accountNumber.append(oneAccountNumber.toString());
-		}
-
-		return new Integer(accountNumber.toString());
-
+		String accountNumber = stream(accountAsCharArray)
+				.map(array -> convertBlockToNumber(array).toString())
+				.reduce("", String::concat);
+		return new Integer(accountNumber);
 	}
 	
 	
@@ -42,7 +40,7 @@ public class BankAccountParser {
 				return pattern.getValue();
 			}
 		}
-		//couldn't find a matching pattern 
+		//couldn't find a matching pattern
 		return Integer.valueOf(-1);
 	}
 
