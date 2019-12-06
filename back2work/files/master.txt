@@ -1,2 +1,3 @@
 # This file has no effect on the code. It was created to play around with Git rebase.
 M2
+M3
