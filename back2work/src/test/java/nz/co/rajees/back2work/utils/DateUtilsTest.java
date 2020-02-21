@@ -17,7 +17,9 @@ public class DateUtilsTest {
     public void testConvertDateToLocalDateTime() {
         // arrange
         Calendar calendar = Calendar.getInstance();
+        calendar.clear();
         calendar.set(2010, 10, 10, 8, 20, 4);
+        calendar.add(Calendar.MILLISECOND, 127);
         Date dateToConvert = calendar.getTime();
 
         // act
@@ -30,6 +32,8 @@ public class DateUtilsTest {
         assertThat(localDateTime.get(ChronoField.HOUR_OF_DAY), is(equalTo(8)));
         assertThat(localDateTime.get(ChronoField.MINUTE_OF_HOUR), is(equalTo(20)));
         assertThat(localDateTime.get(ChronoField.SECOND_OF_MINUTE), is(equalTo(4)));
+        assertThat(localDateTime.get(ChronoField.MILLI_OF_SECOND), is(equalTo(127)));
+
 
     }
 }
