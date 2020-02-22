@@ -1,5 +1,6 @@
 package nz.co.rajees.back2work.utils;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -14,6 +15,10 @@ import java.util.Date;
  */
 public class DateUtils {
 
+    private DateUtils() {
+        // utils class that will never be instantiated
+    }
+
     public static void main(String[] args) {
         LocalDateTime localDateTime = convertDateToLocalDateTime(new Date());
         //LocalDateTime localDateTime = LocalDateTime.now();
@@ -25,5 +30,10 @@ public class DateUtils {
         return dateToConvert.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime();
+    }
+
+    public static Date convertLocalDateTimeToDate(LocalDateTime dateToConvert) {
+        Instant instant = dateToConvert.atZone(ZoneId.systemDefault()).toInstant();
+        return Date.from(instant);
     }
 }
