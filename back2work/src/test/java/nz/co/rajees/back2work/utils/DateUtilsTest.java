@@ -39,7 +39,7 @@ public class DateUtilsTest {
     @Test
     public void testConvertLocalDateTimeToDate() {
         // arrange
-        LocalDateTime dateToConvert = LocalDateTime.of(2010, 11, 10, 8, 20);
+        LocalDateTime dateToConvert = LocalDateTime.of(2010, 11, 10, 8, 20, 17, 822000000);
 
         // act
         Date date = DateUtils.convertLocalDateTimeToDate(dateToConvert);
@@ -52,6 +52,7 @@ public class DateUtilsTest {
         assertThat(calendar.get(Calendar.DAY_OF_MONTH), is(equalTo(10)));
         assertThat(calendar.get(Calendar.HOUR), is(equalTo(8)));
         assertThat(calendar.get(Calendar.MINUTE), is(equalTo(20)));
-        assertThat(calendar.get(Calendar.SECOND), is(equalTo(0)));
+        assertThat(calendar.get(Calendar.SECOND), is(equalTo(17)));
+        assertThat(calendar.get(Calendar.MILLISECOND), is(equalTo(822)));
     }
 }
