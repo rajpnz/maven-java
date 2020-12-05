@@ -17,7 +17,9 @@ public class Example {
 		//invokeImmutableMap();
 	}
 
-	
+	/**
+	 * https://en.wikipedia.org/wiki/Fibonacci_number
+	 */
 	public static int fibonacci(int index){
 		boolean doRecurse = true;
 		if(doRecurse){
@@ -40,7 +42,12 @@ public class Example {
 		}
 		return resultAtIndex;
 	}
-	
+
+	/**
+	 * https://en.wikipedia.org/wiki/Fibonacci_number
+	 * @param index The index that we are trying to determine the fibonacci number, index starts at zero
+	 * @return The fibonacci number at index
+	 */
 	public static int fibonacciRecurse(int index){
 		//0,1,1,2,3,5,8,13,21
 		if( index == 0){
